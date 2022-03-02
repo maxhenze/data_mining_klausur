@@ -7,9 +7,18 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage{amsmath}
 \usepackage{amssymb} 
+\usepackage{listings}
+\usepackage{float}
+\usepackage{graphics,graphicx}
 \usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm, bindingoffset=1cm, includeheadfoot]{geometry}
 \usepackage[onehalfspacing]{setspace}
-\usepackage[backend=biber,style=numeric,]{biblatex}\addbibresource{bib.bib}
+\usepackage[backend=biber,style=numeric,maxcitenames=1,sorting=none]{biblatex}\addbibresource{bib.bib}
+
+% aendert u.a. bei zitierungen zu et al.
+\DefineBibliographyStrings{ngerman}{ 
+   andothers = {et\addabbrvspace al\adddot},
+   andmore   = {et\addabbrvspace al\adddot},
+}
 
 \setlength{\parindent}{0pt}
 
@@ -27,68 +36,165 @@
 %Es werden höchstens drei bis vier Paragraphen erwartet. Sie sollen hinreichend erklären, was das das Problem ist, das der Artikel bearbeitet, 
 %warum es ein wichtiges Problem ist und das die Beiträge des replizierten/reproduzierten Artikel ist. Zitieren sie in diesem Abschnitt 
 %relevante wissenschaftliche Arbeiten.
-
 % Was ist der Beitrag des replizierten Artikels?
 % Welche Teile der Arbeit wurden für die Replikation ausgewählt? Begründen Sie die Auswahl. Warum wurden andere Teile der Arbeit nicht repliziert?
 % Welche neuen Erkenntnisse erwarten Sie durch die geplante Reproduktion? Was steht davon nicht in dem replizierten Artikel?
 % Was ist der Beitrag bzw. sind die Beiträge Ihres Artikels über die Reproduktion der ausgewählten Arbeit?
 
+Neuronale Netzwerke mit Transformern sind ein beliebtes Hilfsmittel in NLP und
+Modelle wie BERT~\cite{devlin2018bert} oder GPT~2~\cite{radford2019language} gehören schon lange zum state-of-the-art, was durch ihre sehr guten
+Ergebnisse~\cite{minaee2021deep,liu2019text,sun2019utilizing} in diversen Bereichen untermahlt wird.
+Doch die Tatsache, dass Einblicke in diese sehr komplexen Modelle und ein somit besseres Verständnis für von ihnen getroffene Entscheidungen
+nicht sehr einfach ist, war Anlass für \citeauthor{dunn2021context} um sich in ihrer Arbeit~\cite{dunn2021context} näher damit
+zu beschäftigen. Konkret: \citeauthor{dunn2021context} entwickelten in ihrem Paper einen Ansatz zur abstufenden Visualisierung der Wichtigkeit
+von Wörtern, wie sie von einem Neuronalen Netz bei der Klassifikation bewertet werden.
+
+Ziel dieser Arbeit ist es das ganze Paper von \citeauthor{dunn2021context} zu replizieren. Es existiert kein Code und keine sonstigen Beigaben
+zum Paper, sodass jegliche Replikationen aus den Wortlauten und Beschreibungen der Autoren erzeugt werden müssen.
+%TODO vllt. noch neues Experiment hinzufügen ? 
+
+Durch diese Arbeit sollen die Experimente von \citeauthor{dunn2021context} erneut verifiziert werden. Der erzeugte Code soll anderen Lesern
+als Hilfestellung beim Verständnis des Papers dienen und somit eine einfache Möglichkeit bei der Erstellung weiterer Experimente geben.
+
 \section{Umfang der Replikation/Reproduktion}
-Erklären sie die Behauptungen/Hypothesen/Experimente des Artikels, die sie für ihre Replikation/Reproduktion ausgewählt haben.
-Motivieren und begründen sie ihre Auswahl.
-Es ist sinnvoll, wenn sie sich auf die Behauptung konzentrieren, die der Hauptbeitrag des Artikels ist.
-Um den Hauptbeitrag herauszufinden, versuchen sie den Artikel in ein bis zwei Sätzen zusammenzufassen, z.B.
-\begin{quote}
-    ``This paper introduces a new activation function X that outperforms a similar activation function Y on tasks Z,V,W.''  oder
+% Erklären sie die Behauptungen/Hypothesen/Experimente des Artikels, die sie für ihre Replikation/Reproduktion ausgewählt haben.
+% Motivieren und begründen sie ihre Auswahl.
+% Es ist sinnvoll, wenn sie sich auf die Behauptung konzentrieren, die der Hauptbeitrag des Artikels ist.
+% Um den Hauptbeitrag herauszufinden, versuchen sie den Artikel in ein bis zwei Sätzen zusammenzufassen, z.B.
+% \begin{quote}
+%     ``This paper introduces a new activation function X that outperforms a similar activation function Y on tasks Z,V,W.''  oder
 
-    ``Dieser Artikel führt eine neuartige Aktivierungsfunktion X ein, welche die ähnliche Aktivierungsfunktionen Y für die Aufgaben Z,W,V deutlich verbessert.''
-\end{quote}
-Stecken sie den Umfang ihrer Replikation/Reproduktion so klar wie möglich ab.
-Die Behauptungen ihres Berichts sollten durch die Ergebnisse ihrer Experimente unterstützt oder widerlegt werden.
-Schauen sie sich zum Beispiel diese Beschreibung an:
-\begin{quote}
-    ``Contextual embedding models have shown strong performance on a number of tasks across NLP. We will run experiments evaluating two types of contextual embedding models on datasets X, Y, and Z.'' oder
+%     ``Dieser Artikel führt eine neuartige Aktivierungsfunktion X ein, welche die ähnliche Aktivierungsfunktionen Y für die Aufgaben Z,W,V deutlich verbessert.''
+% \end{quote}
+% Stecken sie den Umfang ihrer Replikation/Reproduktion so klar wie möglich ab.
+% Die Behauptungen ihres Berichts sollten durch die Ergebnisse ihrer Experimente unterstützt oder widerlegt werden.
+% Schauen sie sich zum Beispiel diese Beschreibung an:
+% \begin{quote}
+%     ``Contextual embedding models have shown strong performance on a number of tasks across NLP. We will run experiments evaluating two types of contextual embedding models on datasets X, Y, and Z.'' oder
 
-    ``Für Contextual-Embedding-Modelle wurde nachgewiesen, dass die bei einer Vielzahl von Aufgaben aus einem breiten Spektrum natürlichen Sprachverarbeitung (NLP) eine hervorragende Leistung erbringen. Wir evaluieren experimentell zwei verschiedene Arten von Contextual-Embedding-Modellen auf den Datensätzen X, Y, Z.''
-\end{quote}
-Der Umfang ist zu breit angelegt und es fehlt die Erwartung für ein klares Ergebnis.
-Schauen sie sich die nächste Beschreibung an:
-\begin{quote}
-    ``Finetuning pretrained BERT on SST-2 will have higher accuracy than an LSTM trained with GloVe embeddings.'' oder
+%     ``Für Contextual-Embedding-Modelle wurde nachgewiesen, dass die bei einer Vielzahl von Aufgaben aus einem breiten Spektrum natürlichen Sprachverarbeitung (NLP) eine hervorragende Leistung erbringen. Wir evaluieren experimentell zwei verschiedene Arten von Contextual-Embedding-Modellen auf den Datensätzen X, Y, Z.''
+% \end{quote}
+% Der Umfang ist zu breit angelegt und es fehlt die Erwartung für ein klares Ergebnis.
+% Schauen sie sich die nächste Beschreibung an:
+% \begin{quote}
+%     ``Finetuning pretrained BERT on SST-2 will have higher accuracy than an LSTM trained with GloVe embeddings.'' oder
 
-    ``Das Anpassen eines vortrainierten BERT-Modells für die SST-2-Aufgabe führt zu einer höheren Klassifikationsrate als ein LSTM-Modell, das für GloVe-Einbettungen trainiert wurde''
-\end{quote}
-Hier ist klarer was bei der Reproduktion/Replikation herauskommen kann. Diese Aussage könnte durch ihre Ergebnisse tatsächlich bestätigt oder widerlegt werden.
+%     ``Das Anpassen eines vortrainierten BERT-Modells für die SST-2-Aufgabe führt zu einer höheren Klassifikationsrate als ein LSTM-Modell, das für GloVe-Einbettungen trainiert wurde''
+% \end{quote}
+% Hier ist klarer was bei der Reproduktion/Replikation herauskommen kann. Diese Aussage könnte durch ihre Ergebnisse tatsächlich bestätigt oder widerlegt werden.
 
-Führen sie eindeutig die Behauptungen auf, die sie in ihrer Arbeit untersuchen.
+% Führen sie eindeutig die Behauptungen auf, die sie in ihrer Arbeit untersuchen.
+% \begin{itemize}
+%     \item Behauptung 1
+%     \item Behauptung 2
+%     \item Behauptung 3
+% \end{itemize}
+
+Der Umfang dieser Replikation umfasst die gesamte Arbeit von \citeauthor{dunn2021context}. Diese lässt sich zu der Aussage zusammenfassen,
+dass bei der Klassifikation von Dokumenten bestimmte Wörter einen größeren Einfluss haben als andere. Dies geht mit unserer
+Intuition einher, da zum Beispiel \textit{und} weniger aussagt als \textit{bombastisch} und somit letzteres den Text in einen
+vermutlich eher positiven Kontext rückt.
+Nun gibt es Techniken wie leave-one-out, welche über alle Token in einem Dokument durch iterieren,
+das gerade betrachtete Token entfernen und dann den Text neu klassifizieren. Die Wahrscheinlichkeit, der Neuklassifikation
+kann also mit der Wahrscheinlichkeit des Originaltextes verglichen werden wodurch eine gewisse
+Wichtigkeit des Wortes innerhalb der Klassifikation deutlich wird. Basierend auf diesen Techniken propagieren \citeauthor{dunn2021context} nun
+folgende Behauptung:
+
 \begin{itemize}
-    \item Behauptung 1
-    \item Behauptung 2
-    \item Behauptung 3
+    \item \glqq Unser Ansatz schaut auf die Kombination von Wörtern und Sätzen um deren Einfluss auf die Ausgabe des Modells zu erkennen, was zu einer Visualisierung führt, welche kontextsensitiver zum Originaltext ist.\grqq \cite{dunn2021context}
 \end{itemize}
 
 \section{Methoden}
 
-%In this section you explain your approach -- did you use the author's code, did you aim to re-implement the approach from the paper description? Summarize the resources (code, documentation, GPUs) that you used. 
-
 \subsection{Modellbeschreibung}
-Beischreiben sie die Modelle, die im Originalartikel genutzt werden, einschließlich der Architektur, der Zielfunktion und der Parameter.
-%Describe the models used in the original paper, including the architecture, learning objective and the number of parameters.
+%Beischreiben sie die Modelle, die im Originalartikel genutzt werden, einschließlich der Architektur, der Zielfunktion und der Parameter.
+Bei dem in der Arbeit von \citeauthor{dunn2021context} benutztem Modell handelt es sich um ein BERT-base Modell ohne genauere Angaben.
+%TODO ausfüllen 
+
 
 \subsection{Datenbeschreibung}
-Beschreiben sie die Datenmengen die sie genutzt haben und wie sie sie bekommen haben.
-%Describe the datasets you used and how you obtained them. 
+Der im Originalartikel und dieser Replikation verwendete Datensatz ist das large Movie
+Review Dataset~\cite{maas-EtAl:2011:ACL-HLT2011} der Universität Stanford.
+Dieser umfasst 50.000 Dokumente mit einer Teilung in 25.000 Trainingsdokumente und 25.000 Testdokumente und kann unter
+\url{https://ai.stanford.edu/~amaas/data/sentiment/} heruntergeladen werden. Dies wird im Jupyter Notebook automatisch gemacht, falls
+der Datensatz noch nicht vorhanden ist.
+Der Datensatz hat eine vorgegebene Ordnerstruktur, so befinden sich die Trainingsdokumente und Testdokumente in eigenen Ordnern,
+wobei positive und negative Dokumente nochmals in eigene Ordner unterteilt sind. Eine Datei ist in der Struktur \texttt{x\_y.txt}
+angegeben wobei x die Dokumentenid und y die Sternewertung von 0 bis 10 ist.
+Die Dokumente unterscheiden sich stark in der Länge, so gibt es Dokumente mit knapp über 50 Zeichen aber auch solche mit über 13.000 Zeichen.
+Die Dokumente an sich sind nicht aufbereitet, enthalten englische Altagssprache und Sonverzeichen.
+
+\begin{figure}[H]
+    \centering
+    \begin{lstlisting}
+        Fair drama/love story movie that focuses on the lives of 
+        blue collar people finding new life thru new love.The acting 
+        here is good but the film fails in cinematography,screenplay,
+        directing and editing.The story/script is only average at best.
+        This film will be enjoyed by Fonda and De Niro fans and by 
+        people who love middle age love stories where in the coartship 
+        is on a more wiser and cautious level.
+        It would also be interesting for people who are 
+        interested on the subject matter regarding illiteracy.......
+    \end{lstlisting}
+    \caption{Beispieltext eines positiven Trainingsdokuments}
+\end{figure}
+
+Zusätzlich zu der Unterteilung in Trainings- und Testdaten, wurden die Trainingsdaten wie im Originalartikel angegeben
+noch in 20 Prozent Validierungsdaten geteilt.
 
 \subsection{Hyperparameter}
-Beschreiben sie, wie sie Hyperparameter gesetzt haben. Welche Quellen haben sie für die konkreten Werte genutzt (z.B. den Forschungsartikel, Code oder sie hatten eine wohlbegründete Vermutung, educated guess).
-%Describe how you set the hyperparameters and what the source was for their value (e.g. paper, code or your guess). 
+%Beschreiben sie, wie sie Hyperparameter gesetzt haben. Welche Quellen haben sie für die konkreten Werte genutzt (z.B. den Forschungsartikel, Code oder sie hatten eine wohlbegründete Vermutung, educated guess).
+Die im Modell einstellbaren Hyperparameter sind: Chargengröße (batch size), Lernrate, Epochenanzahl und Verlustrate des Dropout Layers.
+Auch hier waren keine Angaben seitens des Originalartikels vorhanden. Daher orientierte sich die Festlegung dieser Parameter an
+externen Berichten. Nur die Chargengröße orientierte sich nicht an diesen. Um ein Training auf einer Grafikkarte zu ermöglichen
+musste diese verringert werden.
+\textit{Tensorflow}\footnote{\url{https://www.tensorflow.org/}}, das zur Implementierung des Modells verwendete Python Package,
+schlägt Werte für eine Textklassifikation mit BERT vor. Diese Vorschläge orientieren sich am selben Datensatz wie er hier Anwendung findet,
+sodass diese Werte im Projekt übernommen wurden und für eine sehr gute Performance des Models sorgen. Mehr dazu im nächsten Kapitel.
+
+Über das \textit{officials.nlp} Package wurde der AdamW~\cite{DBLP:journals/corr/abs-1711-05101} Optimierer implementiert,
+welcher beim Training die Hyperparameter des Modells anpasst.
 
 \subsection{Implementierung}
-Beschreiben sie, ob sie vorhandenen Code oder eigenen Code genutzt haben.
-Stellen sie Links zum Code bereit und beschreiben sie welche Programmiersprachen und Pakete genutzt wurden.
-Ihr Github oder Gitlab-Reposititory sollte öffentlich sein.
-Das Reposititory sollte klar dokumentiert werden.
-%Describe whether you use the existing code or write your own code, with the link to the code and which programming languages/packages were used. Note that the github repo you link to should be public and have a clear documentation.
+% Beschreiben sie, ob sie vorhandenen Code oder eigenen Code genutzt haben.
+% Stellen sie Links zum Code bereit und beschreiben sie welche Programmiersprachen und Pakete genutzt wurden.
+% Ihr Github oder Gitlab-Reposititory sollte öffentlich sein.
+% Das Reposititory sollte klar dokumentiert werden.
+
+Die Implementierung erfolgte über Python\footnote{\url{https://www.python.org/}} mit
+Hilfe eines Jupyter Notebooks\footnote{\url{https://jupyter.org/}}.
+
+Sie gliederte sich in drei große Abschnitte: Modellerzeugung, Ergebnisverarbeitung, Visualisierung.
+
+\subsubsection{Modellerzeugung}
+
+Die Modellerzeugung wurde mit Hilfe des \textit{tensorflow} und des \textit{official.nlp} Package bearbeitet.
+
+Zuerst wurden die Daten in die drei Datensätze: Test, Training und Validierung unterteilt. Dies wurde mit Hilfe der
+\texttt{text\_datase\_from\_directory} Funktion aus \textit{tensorflow} erzeugt. Die Ordnerstruktur der Daten ist standartisiert
+und somit im richtigen Format um von der Funktion verarbeitet zu werden.
+
+Der Encoder, also das eigentliche BERT Modell und der Preprocesser können über eine
+zentrale Anlaufstelle\footnote{\url{https://tfhub.dev}} heruntergeladen werden.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{img/model_code.png}
+    \caption{Funktion um das Klassifikationsmodell zu erzeugen. Es besteht aus einem Input-, Preprocessing-, Encode-, Dropout-
+        und Denselayer.}
+    \label{fig:model}
+\end{figure}
+
+Wie in Abbildung \ref{fig:model} zu sehen ist, wurden die einzelnen Layer mit Hilfe von \texttt{hub.KerasLayer}
+(\textit{tensorflow} Package) hintereinander geschalten.
+
+Als Lossfunktion wurde Binary Crossentropy und als Metrik die Binary Accuracy verwendet. Beide können ebenfalls über
+\textit{tensorflow} geladen und verwendet werden.
+
+Nun kann das Modell kompiliert, trainiert und dann getestet werden. Dabei ergeben sich folgende Ergebnisse:
+
+
 
 \subsection{Aufbau der Experimente}
 Erklären sie, wie sie ihre Experimente durchgeführt haben. Was für Ressourcen haben sie verwendet, z.B. GPU/CPU-Ressourcen.
