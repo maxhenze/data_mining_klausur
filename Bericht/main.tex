@@ -1,0 +1,239 @@
+\documentclass[DIV=13,fontsize=11pt]{scrartcl}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{csquotes}
+\usepackage[hidelinks]{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb} 
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm, bindingoffset=1cm, includeheadfoot]{geometry}
+\usepackage[onehalfspacing]{setspace}
+\usepackage[backend=biber,style=numeric,]{biblatex}\addbibresource{bib.bib}
+
+\setlength{\parindent}{0pt}
+
+\begin{document}
+% ----------------------------------------------------------------------------
+\subject{Projektbericht zum Modul Data Mining Wintersemester 20221/2022}
+\title{Reproduktion des Papers \\ \textit{Context-Sensitive Visualization of Deep Learning Natural Language Processing Models}\cite{dunn2021context}}
+\author{Max Henze}% obligatorisch
+\maketitle% verwendet die zuvor gemachte Angaben zur Gestaltung eines Titels
+% ----------------------------------------------------------------------------
+
+\section{Einleitung}
+
+%Beschreiben sie mit ein paar Sätzen den Kontext der replizierten/reproduzierten Arbeit. 
+%Es werden höchstens drei bis vier Paragraphen erwartet. Sie sollen hinreichend erklären, was das das Problem ist, das der Artikel bearbeitet, 
+%warum es ein wichtiges Problem ist und das die Beiträge des replizierten/reproduzierten Artikel ist. Zitieren sie in diesem Abschnitt 
+%relevante wissenschaftliche Arbeiten.
+
+% Was ist der Beitrag des replizierten Artikels?
+% Welche Teile der Arbeit wurden für die Replikation ausgewählt? Begründen Sie die Auswahl. Warum wurden andere Teile der Arbeit nicht repliziert?
+% Welche neuen Erkenntnisse erwarten Sie durch die geplante Reproduktion? Was steht davon nicht in dem replizierten Artikel?
+% Was ist der Beitrag bzw. sind die Beiträge Ihres Artikels über die Reproduktion der ausgewählten Arbeit?
+
+\section{Umfang der Replikation/Reproduktion}
+Erklären sie die Behauptungen/Hypothesen/Experimente des Artikels, die sie für ihre Replikation/Reproduktion ausgewählt haben.
+Motivieren und begründen sie ihre Auswahl.
+Es ist sinnvoll, wenn sie sich auf die Behauptung konzentrieren, die der Hauptbeitrag des Artikels ist.
+Um den Hauptbeitrag herauszufinden, versuchen sie den Artikel in ein bis zwei Sätzen zusammenzufassen, z.B.
+\begin{quote}
+    ``This paper introduces a new activation function X that outperforms a similar activation function Y on tasks Z,V,W.''  oder
+
+    ``Dieser Artikel führt eine neuartige Aktivierungsfunktion X ein, welche die ähnliche Aktivierungsfunktionen Y für die Aufgaben Z,W,V deutlich verbessert.''
+\end{quote}
+Stecken sie den Umfang ihrer Replikation/Reproduktion so klar wie möglich ab.
+Die Behauptungen ihres Berichts sollten durch die Ergebnisse ihrer Experimente unterstützt oder widerlegt werden.
+Schauen sie sich zum Beispiel diese Beschreibung an:
+\begin{quote}
+    ``Contextual embedding models have shown strong performance on a number of tasks across NLP. We will run experiments evaluating two types of contextual embedding models on datasets X, Y, and Z.'' oder
+
+    ``Für Contextual-Embedding-Modelle wurde nachgewiesen, dass die bei einer Vielzahl von Aufgaben aus einem breiten Spektrum natürlichen Sprachverarbeitung (NLP) eine hervorragende Leistung erbringen. Wir evaluieren experimentell zwei verschiedene Arten von Contextual-Embedding-Modellen auf den Datensätzen X, Y, Z.''
+\end{quote}
+Der Umfang ist zu breit angelegt und es fehlt die Erwartung für ein klares Ergebnis.
+Schauen sie sich die nächste Beschreibung an:
+\begin{quote}
+    ``Finetuning pretrained BERT on SST-2 will have higher accuracy than an LSTM trained with GloVe embeddings.'' oder
+
+    ``Das Anpassen eines vortrainierten BERT-Modells für die SST-2-Aufgabe führt zu einer höheren Klassifikationsrate als ein LSTM-Modell, das für GloVe-Einbettungen trainiert wurde''
+\end{quote}
+Hier ist klarer was bei der Reproduktion/Replikation herauskommen kann. Diese Aussage könnte durch ihre Ergebnisse tatsächlich bestätigt oder widerlegt werden.
+
+Führen sie eindeutig die Behauptungen auf, die sie in ihrer Arbeit untersuchen.
+\begin{itemize}
+    \item Behauptung 1
+    \item Behauptung 2
+    \item Behauptung 3
+\end{itemize}
+
+\section{Methoden}
+
+%In this section you explain your approach -- did you use the author's code, did you aim to re-implement the approach from the paper description? Summarize the resources (code, documentation, GPUs) that you used. 
+
+\subsection{Modellbeschreibung}
+Beischreiben sie die Modelle, die im Originalartikel genutzt werden, einschließlich der Architektur, der Zielfunktion und der Parameter.
+%Describe the models used in the original paper, including the architecture, learning objective and the number of parameters.
+
+\subsection{Datenbeschreibung}
+Beschreiben sie die Datenmengen die sie genutzt haben und wie sie sie bekommen haben.
+%Describe the datasets you used and how you obtained them. 
+
+\subsection{Hyperparameter}
+Beschreiben sie, wie sie Hyperparameter gesetzt haben. Welche Quellen haben sie für die konkreten Werte genutzt (z.B. den Forschungsartikel, Code oder sie hatten eine wohlbegründete Vermutung, educated guess).
+%Describe how you set the hyperparameters and what the source was for their value (e.g. paper, code or your guess). 
+
+\subsection{Implementierung}
+Beschreiben sie, ob sie vorhandenen Code oder eigenen Code genutzt haben.
+Stellen sie Links zum Code bereit und beschreiben sie welche Programmiersprachen und Pakete genutzt wurden.
+Ihr Github oder Gitlab-Reposititory sollte öffentlich sein.
+Das Reposititory sollte klar dokumentiert werden.
+%Describe whether you use the existing code or write your own code, with the link to the code and which programming languages/packages were used. Note that the github repo you link to should be public and have a clear documentation.
+
+\subsection{Aufbau der Experimente}
+Erklären sie, wie sie ihre Experimente durchgeführt haben. Was für Ressourcen haben sie verwendet, z.B. GPU/CPU-Ressourcen.
+Verlinken sie ihren Code und Notebooks.
+%Explain how you ran your experiments, e.g. the CPU/GPU resources and provide the link to your code and notebooks. 
+
+\subsection{Ressourcen für Berechnungen}
+Beschreiben sie die Anforderungen für die Berechnungen für jedes ihrer Experimente, z.B. die Anzahl der CPU/GPU-Stunden oder die Voraussetzungen für den Hauptspeicher und GPU-Speicher.
+Geben sie für Zeit und Speicher eigene Abschätzungen an, bevor die Experimente gelaufen sind und vergleichen sie dies mit den tatsächlich verbrauchten Ressourcen.
+Sie müssen vor den Experimenten einplanen, dass diese Informationen auch durch ihren Code gemessen und gespeichert werden.
+
+% Provide information on computational requirements for each of your experiments. For example, the number of CPU/GPU hours and memory requirements.
+% Mention both your estimation made before running the experiments (i.e. in the proposal) and the actual resources you used to reproducing the experiments. 
+% \textbf{\textit{You'll need to think about this ahead of time, and write your code in a way that captures this information so you can later add it to this section.} }
+
+
+\section{Ergebnisse}
+Starten sie mit einem Überblick über die Ergebnisse.
+Bestätigen ihre Ergebnisse die aufgeführten Behauptungen?
+Dieser Abschnitt sollte hauptsächlich Fakten nennen und so präzise wie möglich geschrieben werden.
+Die Bewertung und Diskussion kann im späteren Kapitel ``Diskussion'' folgen.
+
+% Start with a high-level overview of your results. Does your work support the claims you listed in section 2.1? Keep this section as factual and precise as possible, reserve your judgement and discussion points for the next ``Discussion'' section. 
+
+Beschreiben sie dann detailliert jedes einzelne Ergebnis, das sie haben.
+Zeigen sie wie es mit einer oder mehreren Behauptungen in Beziehung steht.
+Erklären sie konkret was der Kern ihres Ergebnis ist.
+Gruppieren sie die Ergebnisse in logische Abschnitte.
+Beschreiben sie klar, wo sie über den Originalartikel hinausgegangen sind, wo sie zusätzliche Experimente durchgeführt haben und wie diese mit den ursprünglichen Behauptungen in Beziehung stehen.
+
+% Go into each individual result you have, say how it relates to one of the claims, and explain what your result is. Logically group related results into sections. Clearly state if you have gone beyond the original paper to run additional experiments and how they relate to the original claims. 
+
+Tipp 1: Drücken sie sich genau aus und verwenden sie eine klare und einfache Sprache, z.B.
+\begin{quote}
+    ``we reproduced the accuracy to within 1\% of reported value, that upholds the paper's conclusion that it performs much better than baselines.'' oder
+
+    ``We konnten die Klassifikationsrate bis auf 1\% des angegebenen Werts reproduzieren. Dies unterstützt die Schlussfolgerung der Artikels, dass der Ansatz leistungsfähiger als die Baselines ist.''
+\end{quote}
+Oft kann man nicht die exakt gleiche numerische Zahl als Ergebnis bekommen. Deshalb müssen sie das Ergebnis bewerten, um zu entscheiden, ob ihr Ergebnis die Behauptung der Originalartikels unterstützt.
+% Getting exactly the same number is in most cases infeasible, so you'll need to use your judgement call to decide if your results support the original claim of the paper. 
+
+Tipp 2: Nutzen sie Tabellen und Abbildungen, um ihre Ergebnisse darzustellen.
+% You may want to use tables and figures to demonstrate your results.
+
+% The number of subsections for results should be the same as the number of hypotheses you are trying to verify.
+
+\subsection{Ergebnis 1}
+
+\subsection{Ergebnis 2}
+
+\subsection{Zusätzliche Ergebnisse, die nicht im Originalartikel enthalten waren}
+Beschreiben sie alle zusätzlichen Experimente, die über den Originalartikel hinausgehen.
+Dies können Experimente zu weiteren Datenmengen sein oder sie probieren andere Methoden bzw. weitere Vereinfachungen des Modells aus oder passen die Hyperparameter an.
+Beschreiben sie für jedes zusätzliche Experiment, was sie genau durchgeführt haben, was die Ergebnisse sind und diskutieren sie was diese Ergebnisse zeigen.
+
+% Describe any additional experiments beyond the original paper. This could include experimenting with additional datasets, exploring different methods, running more ablations, or tuning the hyperparameters. For each additional experiment, clearly describe which experiment you conducted, its result, and discussions (e.g. what is the indication of the result).
+
+\section{Diskussion}
+Beschreiben sie die weiterführenden Implikationen der experimentellen Ergebnisse.
+War der Originalartikel replizierbar bzw. reproduzierbar.
+Falls nicht, welche Faktoren haben dazu geführt, dass die Experimente nicht reproduziert werden konnten.
+
+% Describe larger implications of the experimental results, whether the original paper was reproducible, and if it wasn’t, what factors made it irreproducible. 
+
+Bewerten sie, ob sie die Evidenz, die sie durch das Durchführen der Experimente erhalten haben, auch überzeugt, dass die Behauptungen des Originalartikels dadurch gestützt werden.
+Diskutieren sie die Stärken und Schwächen ihres Ansatzes, vielleicht haben sie aus Zeitgründen nicht alle Experimente durchführen können, oder vielleicht haben zusätzliche Experimente durchgeführt, die den Originalartikel weiter stärken.
+
+% Give your judgement on if you feel the evidence you got from running the code supports the claims of the paper. Discuss the strengths and weaknesses of your approach -- perhaps you didn't have time to run all the experiments, or perhaps you did additional experiments that further strengthened the claims in the paper.
+
+
+\subsection{Was war einfach?}
+Beschreiben sie welche Teile der Replikation/Reproduktion sich leicht umsetzen ließen.
+Lief der Code der Autoren problemlos? War es aufgrund der Beschreibung im Originalartikel nicht aufwändig die Methoden zu reimplementieren?
+Dieser Abschnitt soll den Lesenden zeigen, welche Teile des Originalartikels sich leicht für eigene Ansätze verwenden lässt.
+
+% Describe which parts of your reproduction study were easy. E.g. was it easy to run the author's code, or easy to re-implement their method based on the description in the paper. The goal of this section is to summarize to the reader which parts of the original paper they could easily apply to their problem. 
+
+Tipp: Machen sie keine pauschalen Verallgemeinerungen. Was für sie leicht ist, muss für andere nicht leicht sein. Geben sie genügend Kontext und erklären sie warum manche Sachen leicht waren, z.B. der Code hatte eine umfangreiche Dokumentation der Schnittstellen und viele Beispiele aus der Dokumentation passten zu den Experimenten im Artikel.
+
+% Be careful not to give sweeping generalizations. Something that is easy for you might be difficult to others. Put what was easy in context and explain why it was easy (e.g. code had extensive API documentation and a lot of examples that matched experiments in papers). 
+
+\subsection{Was war schwer?}
+Beschreiben sie welche Teile ihrer Replikation/Reproduktion aufwändig oder schwierig waren oder viel mehr Zeit in Anspruch genommen haben, als sie erwarteten.
+Vielleicht waren Daten nicht verfügbar, so dass sie einige Experimente nicht verifizieren konnten, oder der Code der Autoren funktionierte nicht und musste erst debugged werden.
+Vielleicht dauerten auch einige Experimente zu lange und sie konnten sie deshalb nicht verifizieren.
+Dieser Abschnitt soll den Lesenden zeigen, welche Teile des Originalartikels schwer wiederverwendbar sind, bzw. signifikante Zusatzarbeiten und Ressourcen erfordern.
+
+% Describe which parts of your reproduction study were difficult or took much more time than you expected. Perhaps the data was not available and you couldn't verify some experiments, or the author's code was broken and had to be debugged first. Or, perhaps some experiments just take too much time/resources to run and you couldn't verify them. The purpose of this section is to indicate to the reader which parts of the original paper are either difficult to re-use, or require a significant amount of work and resources to verify. 
+
+Tipp: Setzen sie sorgfältig ihre Diskussion in den richtigen Kontext, z.B. sagen sie nicht `` die Mathematik war schwer verständlich'' sondern sagen sie `` die Mathematik erfordert fortgeschrittene Kenntnisse in Analysis für das Verständnis''.
+
+% Be careful to put your discussion in context. For example, don't say ``the math was difficult to follow,'' say ``the math requires advanced knowledge of calculus to follow.'' 
+
+\subsection{Empfehlungen für die Replizierbarkeit / Reproduzierbarkeit}
+Geben sie Empfehlungen, wie die Autoren des Originalartikels oder andere Forschende in diesem Feld die Replizierbarkeit / Reproduzierbarkeit verbessern können.
+
+% Describe a set of recommendations to the original authors or others who work in this area for improving reproducibility.
+
+\section{Kommunikation mit den Autoren}
+Dokumentieren sie das Ausmaß (oder das Fehlen) der Kommunikation mit Autoren.
+Stellen sie sicher, dass der Bericht eine faire Beurteilung der Forschungsarbeiten ist. Versuchen sie deshalb mit den Autoren Kontakt aufzunehmen.
+Sie können ihnen konkrete Fragen stellen oder falls sie keine Fragen haben, den Bericht zusenden und um Feedback bitten.
+
+% Document the extent of (or lack of) communication with the original authors. To make sure the reproducibility report is a fair assessment of the original research we recommend getting in touch with the original authors. You can ask authors specific questions, or if you don't have any questions you can send them the full report to get their feedback.
+
+
+
+% \section{Lösungsansätze für das Problem}
+% Kurze Zusammenfassung verwandter/konkurrierender Arbeiten, die das Problem auf ähnliche Weise lösen (zwei Artikel oder mehr)
+% Erste Gruppe von Artikeln 
+% Zweite Gruppe von Artikeln
+% Kurze Zusammenfassung von Arbeiten, Methoden oder Techniken auf denen der replizierte Artikel aufbaut (zwei Artikel oder mehr)
+% Erste Gruppe von Artikeln 
+% Zweite Gruppe von Artikeln 
+% Kurze Beschreibung des/der Ansatzes/Ansätze, die für die Replikation ausgewählt wurden.
+% Offene Details, die im replizierten Artikel nicht oder unvollständig beschrieben wurden und die nicht zitierten Artikeln geklärt werden.
+% Welche Details können durch die Reproduktion geklärt und ergänzt werden? Erklären Sie diese Details.
+% Welche Prinzipien, Ideen, Grundlagen oder Annahmen stehen hinter dem replizierten Ansatz?
+
+
+
+% \section{Empirische Evaluation und Replikation}
+% Beschreibung der Implementierung 
+% Beschreibung von einfachen Tests, die die Korrektheit der Implementierung belegen
+% Beschreibung des Speicherverbrauchs und der Laufzeit-Performance der Implementierung
+% Beschreibung der Ausgangsdaten
+% Beschreibung der Vorverarbeitung der Daten
+% Beschreibung der Replikation des/der Experiment/e
+% Beschreibung von Schwierigkeiten und Problemen
+
+
+
+% \section{Zusammenfassung}
+% Ist der Ansatz gut genug, um das Problem als gelöst zu betrachten?
+% Welche Schwierigkeiten des Ansatzes deckte die Replikation auf?
+% Welche Forschungenrichtungen halten Sie für künftige Untersuchen für potentiell wichtig?
+
+% \section{Entwicklung und Julia-Code}
+% Implementierung Datenvorverarbeitung 
+% Implementierung Modell
+% Implementierung von Tests, Ausgaben, Grafiken, die Arbeitsweise und Korrektheit belegen
+% Implementierung zur Auswertung offener Details im replizierten Artikel
+% Implementierung des replizierten Experiments, Evaluation
+% Implementierung Evaluationsauswertung
+
+
+
+\end{document}
