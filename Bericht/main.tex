@@ -110,6 +110,8 @@ Die folgenden essentiellen Packages fanden dabei Anwendung:
         matplotlib      & Visualisierung der Texte                     \\
         \bottomrule
     \end{tabular}
+    \caption{Verwendete Packages}
+    \label{fig:packages}
 \end{figure}
 
 Zusätzlich wurde das BERT Modell auf einer Nvidia Geforce RTX 3070 mit 8 GB Arbeitsspeicher
@@ -196,5 +198,152 @@ Bei der Verwendung der Daten zum Training des Modells, wurde der Trainingsdatens
 Validierungsdatensatz aufgeteilt. Dieser umfasst 20 Prozent der Trainingsdaten und somit 5.000 Dokumente.
 
 \subsection{Hyperparameter}
+
+Folgende Hyperparameter wurden gesetzt:
+
+\begin{figure}[H]
+    \centering
+    \begin{tabular}{ll}
+        \toprule
+        Parameter    & Wert \\
+        \midrule
+        Batch Size   & 16   \\
+        Epochs       & 1    \\
+        Learningrate & 3e-5 \\
+        \bottomrule
+    \end{tabular}
+\end{figure}
+
+Die Batch Size definiert die Menge an Trainingsdaten, welche von Netzwerk aufeinmal
+verarbeitet werden bevor es sich updated. Diese wurde auf 16 festgesetzt, da das
+Training auf der zuvor schon erwähnten Nvidia Grafikkarte trainiert werden sollte.
+Größere Batch Sizes haben sich als Problem entpuppt, da diese nicht mehr in den
+Speicher passten.
+Bei der Epochenanzahl wurde nur eine festgelegt.
+Beginnend lag dieser Wert bei fünf. Doch unterschiedliche Werte und eine Einbindung
+von Early Stopping ergaben, dass das Modell nach der ersten Epoche die
+beste Leistung aufwies. Mit zunehmenden Training stieg auf dem Trainingsdatensatz
+die Accuracy und im selben Moment sank der Loss. Doch auf dem Validierungsdatensatz
+stieg der Loss bei gleichbleibener Accuracy in jeder Epoche. Dies war ein eindeutiges
+Zeichen für Overfitting.
+
+\subsection{Implementierung}
+
+Der Code zur Implementierung ist abrufbar unter: \url{https://github.com/maxhenze/Klausurleistung.git}
+Die verwendeten Packages finden sich in Abbildung \ref{fig:packages}.\\
+
+Durch die Verwendung eines Jupyter Notebooks ist der Code interaktiv gehalten.
+Parameter können angepasst werden und dadurch erzeugte Modelle können sofort
+neu trainiert werden, falls die Hardware dies zulässt. Falls nicht
+sind im Projekt zwei fertige Modelle vorhanden, welche eigenständig trainiert wurden.\\
+
+Diese können im Notebook geladen und verwendet werden. Der entsprechende
+Flag muss gesetzt werden ob ein Modell trainiert oder geladen werden soll.
+Je nachdem werden ungebrauchte Codeteile übersprungen.\\
+
+Der Datensatz wird automatisch heruntergeladen und entpackt, je nachdem ob
+Daten schon vorhanden sind.\\
+
+Die Einteilung der Trainingsdaten in Training- und Validierungsmenge wird durch
+einen Seed bestimmt. Durch unterschiedliches setzen werden unterschiedliche
+Daten zum Training bzw. zur Validierung benutzt. Hauptsächlich ist dieser
+Wert aber dazu da, damit kein Dokument in beiden Datensätzen auftaucht.\\
+
+Ein anderes BERT Modell kann ebenfalls geladen werden, dazu muss nur der passende
+Link von Tensorflow Hub für die Variable \texttt{tfhub\_handle\_encoder} ersetzt
+werden.\\
+
+Bei dem zuvor schon erwähnte Optimierer handelt es sich um den AdamW~\cite{DBLP:journals/corr/abs-1711-05101}
+Optimierer, welcher die Parameter des Modells dynamisch während des Lernprozesses
+anpasst.\\
+
+\subsection{Aufbau der Experimente}
+
+Zur Durchführung der Experimente des Originalartikels wurden die Dokumente
+aus der Testdatemenge verwendet. Eine Zelle hat dabei die Aufgabe ein zufälliges
+Dokument zu wählen. Durch das Nacheinanderausführen der dahinter liegenden
+Zellen werden die Klassifikations und weiteren Rechenschritte zur Visualisierung
+automatisch abgearbeitet und man erhält am Ende ein fertiges Bild des
+eingefärbten Textes. Dabei wird auf der einen Seite der leave-one-out und auf der
+anderen der leave-n-out Ansatz durchlaufen, so dass am Ende zwei Texte herauskommen,
+welche miteinander verglichen werden können.
+
+\section{Ergebnisse}
+
+Die Ergebnisse verhalten sich zu denen des Originalartikels gemischt. In Beispielen
+wo positive Label erwartet werden sind die Ergebnisse gut und stimmen mit denen
+von \citeauthor{dunn2021context} überein. Bei jenen mit negativem Label finden
+sich leichte bis starke Abweichung welche sich aber auch auf das
+Klassifikationsmodell zurückführen lassen können.\\
+
+Die folgenden Beispiele sind die selben wie im Orginialartikel, welche
+jeweils mit dem leave-one-out und leave-n-out Ansatz visualisiert wurden.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[]{img/legend.png}\\
+    Leave-One-Out\\
+    \includegraphics[]{img/first_ex_loo.png}\\
+    Leave-N-Out\\
+    \includegraphics[]{img/first_ex_lno.png}
+    \caption{Wie im Originalartikel wurde hier mit dem leave-n-out der Zusammenhang von \textit{best} und \textit{movies} besser gekennzeichnet. Im Gegensatz zum Originalartikel hingegen, wurde hier bei beiden das Wort \textit{created} als beeinflussend gekennzeichnet.}
+    \label{fig:ex1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[]{img/legend.png}\\
+    Leave-One-Out\\
+    \includegraphics[]{img/sec_ex_loo.png}\\
+    Leave-N-Out\\
+    \includegraphics[]{img/sec_ex_lno.png}
+    \caption{In diesem Beispiel werden viele Wörter als nicht beeinflussend gekennzeichnet. Die stark kronotierten Wörter \textit{boring} und \textit{uninspired} sowie \textit{bad} werden nicht beachtet. Die Ausgabestärke des Modells lag bei unter einem Prozent, wodurch erkennbar wird, dass hier das Modell sich nicht sicher ist wie es den Satz überhaupt einzuschätzen hat.}
+    \label{fig:ex2}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[]{img/legend.png}\\
+    Leave-One-Out\\
+    \includegraphics[]{img/third_ex_loo.png}\\
+    Leave-N-Out\\
+    \includegraphics[]{img/third_ex_lno.png}
+    \caption{Auch in diesem Beispiel findet sich eine Übereinstimmung zum Originalartikel. \textit{mindless} wird hier mit \textit{entertaining} stärker in Beziehung gesetzt.}
+    \label{fig:ex3}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[]{img/legend.png}\\
+    Leave-One-Out\\
+    \includegraphics[]{img/fourth_ex_loo.png}\\
+    Leave-N-Out\\
+    \includegraphics[]{img/fourth_ex_lno.png}
+    \caption{Dieses Beispiel bietet gar keine Übereinstimmung mit dem Originalartikel. \textit{terrible} und \textit{ruins} werden gar nicht in Betracht gezogen. Aber auch hier ist das Modell der Fehler. Es klassifiziert bei diesem Beispiel das falsche Label.}
+    \label{fig:ex4}
+\end{figure}
+
+Wie in den Abbildungen \ref{fig:ex1} bis \ref{fig:ex4} zu sehen ist, sind die Experimente zweigeteilt. Bei denen wo das
+Klassifikationsmodell richtig liegt lässt sich auch die spätere Visualisierung des Originalartikes replizieren.
+Jene Experimente wo das Modell schon im Vorhinein scheitert, haben auch eine schlechte Visualisierung.
+Wie zuvor schon erwähnt, werden beim Visualisierungsprozess all die Wörter entfernt, welche nicht zur
+Klassifikationbeitragen, also welche bei Entfernung die Ausgabestärke zum geschätzen Label verringern.
+Schätzt das Modell nun also ein positives Label ob wohl es in wahrheit negativ ist, werden Wörter, die auf diese
+Negativität hindeuten natürlich entfernt. Beim Weglassen wird das Dokument an sich positiver, wodurch die Wörter
+scheinbar nichts zur Klassifikation beitragen und somit wegfallen.
+Diese Tatsachen ergeben sich für alle stark, falsch klassifizierten Dokumente.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[]{img/legend.png}\\
+    Leave-One-Out\\
+    \includegraphics[width=\linewidth]{img/new_ex1_loo.png}\\
+    Leave-N-Out\\
+    \includegraphics[width=\linewidth]{img/new_ex1_lno.png}
+    \caption{Verlgeich längerer Texte. Veränderte Einflüsse fallen hier nur in Nuancen auf.}
+    \label{fig:ex5}
+\end{figure}
+
+Bei längeren Texten fallen die veränderten Zusammenhänge nicht sofort auf.
 
 \end{document}
