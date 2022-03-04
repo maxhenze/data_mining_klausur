@@ -146,119 +146,6 @@
       \field{pages}{9}
       \range{pages}{1}
     \endentry
-    \entry{minaee2021deep}{article}{}
-      \name{author}{6}{}{%
-        {{hash=f993317037a8a70ad4d9c6555a09d89a}{%
-           family={Minaee},
-           familyi={M\bibinitperiod},
-           given={Shervin},
-           giveni={S\bibinitperiod}}}%
-        {{hash=d2d0778c1cdd451c75b874b58eec7564}{%
-           family={Kalchbrenner},
-           familyi={K\bibinitperiod},
-           given={Nal},
-           giveni={N\bibinitperiod}}}%
-        {{hash=db089768b8819956d932b3c8db18d498}{%
-           family={Cambria},
-           familyi={C\bibinitperiod},
-           given={Erik},
-           giveni={E\bibinitperiod}}}%
-        {{hash=4d149ba87a2d2a021964e70640ae4577}{%
-           family={Nikzad},
-           familyi={N\bibinitperiod},
-           given={Narjes},
-           giveni={N\bibinitperiod}}}%
-        {{hash=b43c56cc12552e1a9f3d0f2ab2aa5603}{%
-           family={Chenaghlu},
-           familyi={C\bibinitperiod},
-           given={Meysam},
-           giveni={M\bibinitperiod}}}%
-        {{hash=159bca5607e3797666654a2e3022978a}{%
-           family={Gao},
-           familyi={G\bibinitperiod},
-           given={Jianfeng},
-           giveni={J\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {ACM New York, NY, USA}%
-      }
-      \strng{namehash}{a3762cc0e55ae1f34a9959d542225935}
-      \strng{fullhash}{8c907132bc50ce246f739303768f2e37}
-      \strng{bibnamehash}{a3762cc0e55ae1f34a9959d542225935}
-      \strng{authorbibnamehash}{a3762cc0e55ae1f34a9959d542225935}
-      \strng{authornamehash}{a3762cc0e55ae1f34a9959d542225935}
-      \strng{authorfullhash}{8c907132bc50ce246f739303768f2e37}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{ACM Computing Surveys (CSUR)}
-      \field{number}{3}
-      \field{title}{Deep learning--based text classification: a comprehensive review}
-      \field{volume}{54}
-      \field{year}{2021}
-      \field{pages}{1\bibrangedash 40}
-      \range{pages}{40}
-    \endentry
-    \entry{liu2019text}{article}{}
-      \name{author}{2}{}{%
-        {{hash=621013bf54d3546375ad71f17f020b5b}{%
-           family={Liu},
-           familyi={L\bibinitperiod},
-           given={Yang},
-           giveni={Y\bibinitperiod}}}%
-        {{hash=35b5bc53ec3fa2640225354af6ca0e1d}{%
-           family={Lapata},
-           familyi={L\bibinitperiod},
-           given={Mirella},
-           giveni={M\bibinitperiod}}}%
-      }
-      \strng{namehash}{df83681b9acfd53a0c867d0eb509f8f3}
-      \strng{fullhash}{b0ac1f701d97993c2291bde452087831}
-      \strng{bibnamehash}{b0ac1f701d97993c2291bde452087831}
-      \strng{authorbibnamehash}{b0ac1f701d97993c2291bde452087831}
-      \strng{authornamehash}{df83681b9acfd53a0c867d0eb509f8f3}
-      \strng{authorfullhash}{b0ac1f701d97993c2291bde452087831}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{arXiv preprint arXiv:1908.08345}
-      \field{title}{Text summarization with pretrained encoders}
-      \field{year}{2019}
-    \endentry
-    \entry{sun2019utilizing}{article}{}
-      \name{author}{3}{}{%
-        {{hash=8a30a3c4499126236179c335b002f6cd}{%
-           family={Sun},
-           familyi={S\bibinitperiod},
-           given={Chi},
-           giveni={C\bibinitperiod}}}%
-        {{hash=0afa592dc3a71f9677fefd2ae97bd815}{%
-           family={Huang},
-           familyi={H\bibinitperiod},
-           given={Luyao},
-           giveni={L\bibinitperiod}}}%
-        {{hash=9057ec1bc6c2faaf12dfb4b37a8d37d0}{%
-           family={Qiu},
-           familyi={Q\bibinitperiod},
-           given={Xipeng},
-           giveni={X\bibinitperiod}}}%
-      }
-      \strng{namehash}{a85a8e94888cc492ecf7207d4c923681}
-      \strng{fullhash}{e0cac02423c964b3298875d5f30387ca}
-      \strng{bibnamehash}{e0cac02423c964b3298875d5f30387ca}
-      \strng{authorbibnamehash}{e0cac02423c964b3298875d5f30387ca}
-      \strng{authornamehash}{a85a8e94888cc492ecf7207d4c923681}
-      \strng{authorfullhash}{e0cac02423c964b3298875d5f30387ca}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{arXiv preprint arXiv:1903.09588}
-      \field{title}{Utilizing BERT for aspect-based sentiment analysis via constructing auxiliary sentence}
-      \field{year}{2019}
-    \endentry
     \entry{maas-EtAl:2011:ACL-HLT2011}{inproceedings}{}
       \name{author}{6}{}{%
         {{hash=ed7b150d84a40a9f9067abd89a23a133}{%
@@ -304,8 +191,8 @@
       \strng{authorbibnamehash}{17c0fb1c72658866046c6d044b7821d5}
       \strng{authornamehash}{17c0fb1c72658866046c6d044b7821d5}
       \strng{authorfullhash}{52af3773bc6f449fc99b5d9a9d72cb5b}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Proceedings of the 49th Annual Meeting of the Association for Computational Linguistics: Human Language Technologies}
@@ -319,44 +206,6 @@
       \endverb
       \verb{url}
       \verb http://www.aclweb.org/anthology/P11-1015
-      \endverb
-    \endentry
-    \entry{DBLP:journals/corr/abs-1711-05101}{article}{}
-      \name{author}{2}{}{%
-        {{hash=1241b8181104f1917578d4c7f9b323b6}{%
-           family={Loshchilov},
-           familyi={L\bibinitperiod},
-           given={Ilya},
-           giveni={I\bibinitperiod}}}%
-        {{hash=528d4af87fd2ecf5fb8a22db913ce088}{%
-           family={Hutter},
-           familyi={H\bibinitperiod},
-           given={Frank},
-           giveni={F\bibinitperiod}}}%
-      }
-      \strng{namehash}{12dea43a15b25e019407cd7074c864d6}
-      \strng{fullhash}{b308ccb07134a06ec3735828ac4f15e2}
-      \strng{bibnamehash}{b308ccb07134a06ec3735828ac4f15e2}
-      \strng{authorbibnamehash}{b308ccb07134a06ec3735828ac4f15e2}
-      \strng{authornamehash}{12dea43a15b25e019407cd7074c864d6}
-      \strng{authorfullhash}{b308ccb07134a06ec3735828ac4f15e2}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{eprinttype}{arXiv}
-      \field{journaltitle}{CoRR}
-      \field{title}{Fixing Weight Decay Regularization in Adam}
-      \field{volume}{abs/1711.05101}
-      \field{year}{2017}
-      \verb{eprint}
-      \verb 1711.05101
-      \endverb
-      \verb{urlraw}
-      \verb http://arxiv.org/abs/1711.05101
-      \endverb
-      \verb{url}
-      \verb http://arxiv.org/abs/1711.05101
       \endverb
     \endentry
   \enddatalist

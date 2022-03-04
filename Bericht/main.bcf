@@ -2347,20 +2347,15 @@
     <bcf:citekey order="1">dunn2021context</bcf:citekey>
     <bcf:citekey order="2">devlin2018bert</bcf:citekey>
     <bcf:citekey order="3">radford2019language</bcf:citekey>
-    <bcf:citekey order="4">minaee2021deep</bcf:citekey>
-    <bcf:citekey order="4">liu2019text</bcf:citekey>
-    <bcf:citekey order="4">sun2019utilizing</bcf:citekey>
+    <bcf:citekey order="4">dunn2021context</bcf:citekey>
     <bcf:citekey order="5">dunn2021context</bcf:citekey>
     <bcf:citekey order="6">dunn2021context</bcf:citekey>
-    <bcf:citekey order="7">dunn2021context</bcf:citekey>
+    <bcf:citekey order="7">maas-EtAl:2011:ACL-HLT2011</bcf:citekey>
     <bcf:citekey order="8">dunn2021context</bcf:citekey>
     <bcf:citekey order="9">dunn2021context</bcf:citekey>
     <bcf:citekey order="10">dunn2021context</bcf:citekey>
     <bcf:citekey order="11">dunn2021context</bcf:citekey>
-    <bcf:citekey order="12">dunn2021context</bcf:citekey>
-    <bcf:citekey order="13">dunn2021context</bcf:citekey>
-    <bcf:citekey order="14">maas-EtAl:2011:ACL-HLT2011</bcf:citekey>
-    <bcf:citekey order="15">DBLP:journals/corr/abs-1711-05101</bcf:citekey>
+    <bcf:citekey order="12">maas-EtAl:2011:ACL-HLT2011</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">
