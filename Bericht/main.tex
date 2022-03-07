@@ -210,6 +210,7 @@ Folgende Hyperparameter wurden gesetzt:
         Batch Size   & 16   \\
         Epochs       & 1    \\
         Learningrate & 3e-5 \\
+        Dropoutrate  & 10\% \\
         \bottomrule
     \end{tabular}
 \end{figure}
@@ -270,11 +271,35 @@ welche miteinander verglichen werden können.
 
 \section{Ergebnisse}
 
-Die Ergebnisse verhalten sich zu denen des Originalartikels gemischt. In Beispielen
-wo positive Label erwartet werden sind die Ergebnisse gut und stimmen mit denen
-von \citeauthor{dunn2021context} überein. Bei jenen mit negativem Label finden
-sich leichte bis starke Abweichung welche sich aber auch auf das
-Klassifikationsmodell zurückführen lassen können.\\
+\subsection{Ergebnis 1}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{img/train_time.png}
+    \caption{Trainingsergebnisse des Klassifikationsmodells mit BERT und angehängtem Dropout und Dense Layer.}
+    \label{fig:modell_train}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{img/test_time.png}
+    \caption{Testsergebnisse des Klassifikationsmodells mit BERT und angehängtem Dropout und Dense Layer.}
+    \label{fig:modell_test}
+\end{figure}
+
+Die Replikation des Klassifikationsmodells ergab nach einer Trainingsepoche ein Modell mit einer Accuracy von $0.877$ und
+einem Loss von $0.2882$. Es wird also ein Großteil der Daten richtig klassifiziert. Diese Ergebnisse konnten innerhalb
+der Testdaten bestätigt werden, siehe Abbildung \ref{fig:modell_train} und \ref{fig:modell_test}.
+
+Training mit größerer Epochenanzahl ergab keine Verbesserung der Acurracy aber einer Steigerung des Losses. Dies
+deutet auf Overfitting hin.
+
+\subsection{Ergebnis 2}
+
+Die Ergebnisse des Originalartikels konnten durch die Replikation bestätigt werden. Leichte Abweichungen
+ergeben sich in der genauen Einfärbung der Wörter. Dies lässt sich auf ein unterschiedliches Klassifikationsmodell
+zurückführen, welches leicht abweichende Werte produziert. Ebenso gibt es Beispiele des Originalartikels, welche
+falsch vom Modell klassifiziert werden.\\
 
 Die folgenden Beispiele sind die selben wie im Orginialartikel, welche
 jeweils mit dem leave-one-out und leave-n-out Ansatz visualisiert wurden.
@@ -297,7 +322,7 @@ jeweils mit dem leave-one-out und leave-n-out Ansatz visualisiert wurden.
     \includegraphics[]{img/sec_ex_loo.png}\\
     Leave-N-Out\\
     \includegraphics[]{img/sec_ex_lno.png}
-    \caption{In diesem Beispiel werden viele Wörter als nicht beeinflussend gekennzeichnet. Die stark kronotierten Wörter \textit{boring} und \textit{uninspired} sowie \textit{bad} werden nicht beachtet. Die Ausgabestärke des Modells lag bei unter einem Prozent, wodurch erkennbar wird, dass hier das Modell sich nicht sicher ist wie es den Satz überhaupt einzuschätzen hat.}
+    \caption{In diesem Beispiel konnten die kontextuellen Zusammenhänge von \textit{boring} und \textit{film}, sowie \textit{bad} und \textit{acting} durch den leave-n-out Ansatz besser verdeutlicht werden.}
     \label{fig:ex2}
 \end{figure}
 
@@ -319,17 +344,18 @@ jeweils mit dem leave-one-out und leave-n-out Ansatz visualisiert wurden.
     \includegraphics[]{img/fourth_ex_loo.png}\\
     Leave-N-Out\\
     \includegraphics[]{img/fourth_ex_lno.png}
-    \caption{Dieses Beispiel bietet gar keine Übereinstimmung mit dem Originalartikel. \textit{terrible} und \textit{ruins} werden gar nicht in Betracht gezogen. Aber auch hier ist das Modell der Fehler. Es klassifiziert bei diesem Beispiel das falsche Label.}
+    \caption{Dieses Beispiel bietet gar keine Übereinstimmung mit dem Originalartikel. \textit{terrible} und \textit{ruins} werden gar nicht in Betracht gezogen. Der Fehler scheint hier beim Modell zu liegen. Es klassifiziert bei diesem Beispiel das falsche Label. Vermutlich aufgrund der Einleitung mit \textit{a beautiful film}.}
     \label{fig:ex4}
 \end{figure}
 
-Wie in den Abbildungen \ref{fig:ex1} bis \ref{fig:ex4} zu sehen ist, sind die Experimente zweigeteilt. Bei denen wo das
-Klassifikationsmodell richtig liegt lässt sich auch die spätere Visualisierung des Originalartikes replizieren.
-Jene Experimente wo das Modell schon im Vorhinein scheitert, haben auch eine schlechte Visualisierung.
+Wie in den Abbildungen \ref{fig:ex1} bis \ref{fig:ex3} zu sehen ist, sind die Ergebnisse nahezu äquivalent zu denen des
+Originalartikels. Bei denen wo das Klassifikationsmodell richtig liegt lässt sich auch die
+spätere Visualisierung des Originalartikels, in leicht abweichenden Farbnuancen, replizieren.
+Das Experiment wo das Modell schon im Vorhinein scheitert, siehe Abbildung \ref{fig:ex4}, ergibt auch eine schlechte Visualisierung.
 Wie zuvor schon erwähnt, werden beim Visualisierungsprozess all die Wörter entfernt, welche nicht zur
-Klassifikationbeitragen, also welche bei Entfernung die Ausgabestärke zum geschätzen Label verringern.
-Schätzt das Modell nun also ein positives Label ob wohl es in wahrheit negativ ist, werden Wörter, die auf diese
-Negativität hindeuten natürlich entfernt. Beim Weglassen wird das Dokument an sich positiver, wodurch die Wörter
+Klassifikation beitrage. Also jene, welche bei Entfernung die Wertungsdifferenz zum geschätzen Label verringern.
+Schätzt das Modell nun also ein positives Label ob wohl es in Wahrheit negativ ist, werden Wörter, die auf diese
+Negativität hindeuten, entfernt. Beim Weglassen wird das Dokument an sich positiver, wodurch die Wörter
 scheinbar nichts zur Klassifikation beitragen und somit wegfallen.
 Diese Tatsachen ergeben sich für alle stark, falsch klassifizierten Dokumente.
 
@@ -344,6 +370,16 @@ Diese Tatsachen ergeben sich für alle stark, falsch klassifizierten Dokumente.
     \label{fig:ex5}
 \end{figure}
 
-Bei längeren Texten fallen die veränderten Zusammenhänge nicht sofort auf.
+Bei längeren Texten fallen die veränderten Zusammenhänge nicht sofort auf. Ebenso fällt bei längeren Texten auf, dass
+oft nur einzelne Wörter vom Modell als wichtig interpretiert werden. Wodurch sich Visualisierungen wie in Abbildung \ref{fig:ex6} ergeben.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[]{img/legend.png}\\
+    Leave-N-Out\\
+    \includegraphics[width=\linewidth]{img/long_ex_lno.png}
+    \caption{Visualisierung langer Texte. Einzelne Wörter fallen hier stark ins Gewicht, wohingegen alle anderen Wörter als nicht stark beeinflussend gekennzeichnet werden.}
+    \label{fig:ex6}
+\end{figure}
 
 \end{document}
