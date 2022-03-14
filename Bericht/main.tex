@@ -14,6 +14,7 @@
 \usepackage{graphics,graphicx}
 \usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm, bindingoffset=1cm, includeheadfoot]{geometry}
 \usepackage[onehalfspacing]{setspace}
+\usepackage{pdfpages}
 \usepackage[backend=biber,style=numeric,maxcitenames=1,sorting=none]{biblatex}\addbibresource{bib.bib}
 
 % aendert u.a. bei zitierungen zu et al.
@@ -39,8 +40,8 @@
 % eigener Beitrag: Code zum Originalartikel, da keiner vorhanden 
 
 Neuronale Netzwerke sind ein beliebtes Hilfmittel im Bereich von NLP.
-Besonderst Modelle, welche sich mit dem Einsatz von Transformern behelfen,
-wie BERT~\cite{devlin2018bert} oder GPT-2~\cite{radford2019language},
+Besonderst Modelle, welche sich mit dem Einsatz von Transformern ,
+wie BERT~\cite{devlin2018bert} oder GPT-2~\cite{radford2019language}, behelfen,
 gehören schon lange zum state-of-the-art. Doch diese Modelle mit ihrer
 Vielzahl an Layern, Neuronen und Verbindungen, gewähren einen nicht
 gerade einfachen Einblick in ihre Verarbeitungsschritte. Ansätze wie Leave-One-Out
@@ -53,9 +54,11 @@ eine Methode entwickelt um Wörter, mit ihrer unterschiedlichen Wichtigkeitsgewi
 innerhalb der Klassifizierung und unter Inbetrachtnahme von Kontext zu visualisieren.
 Als Replikationsziele wurden für diese Arbeit der gesamte Visualisierungsprozess
 von \citeauthor{dunn2021context} gewählt. Zusätzlich dazu wurde ein eigenes
-BERT Modell auf dem gegebenen IMDB~\cite{maas-EtAl:2011:ACL-HLT2011} trainiert um
+BERT Modell auf dem gegebenen IMDB~\cite{maas-EtAl:2011:ACL-HLT2011} Datensatz trainiert um
 dieses für den späteren Klassifikationsprozess zu verwenden. Darüberhinaus
-wurden zwei zusätzliche Experimente zur Visualisierung mit Kontext durchgeführt.
+wurden zwei zusätzliche Methodiken zur Visualisierung mit Kontext überprüft,
+welche in ihrere Effektivität jedoch hinter der von \citeauthor{dunn2021context}
+stehen.
 Durch die Replikation wird eine verständliche Codebeigabe zum Originalartikel
 erzeugt, welche dem Leser ein noch besseres Verständnis liefern soll. So können
 mit dem System alle Dokumente des Testdatensatzes klassifiziert und visualisiert werden
@@ -79,7 +82,7 @@ was zu einer Visualisierung führt, welche kontextsensitiver zum Originaltext is
 Somit ist folgende Behauptung das Ziel dieser Replikation:
 
 \begin{itemize}
-    \item Leave-N-Out Ansatz ist geeigneter bei der Erkennung wichtiger Wörter und Strukturen als Leave-One-Out.
+    \item Leave-N-Out Ansatz ist geeigneter bei der Erkennung kontextueller Wörter und Strukturen als Leave-One-Out.
 \end{itemize}
 
 \section{Methoden}
@@ -466,5 +469,11 @@ Zusätzlich dazu, auch wenn nicht unbedingt von Nöten, wäre eine Angabe von ve
 des Algorithmus verwenden wurden, sehr bequem.
 
 \section{Kommunikation mit den Autoren}
+
+\section{Anhang}
+
+\subsection{Notebook Code}
+
+\includepdf[pages=-]{pdf/project.pdf}
 
 \end{document}
