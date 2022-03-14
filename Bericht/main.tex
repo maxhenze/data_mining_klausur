@@ -39,25 +39,25 @@
 % neue Erkenntnisse: 
 % eigener Beitrag: Code zum Originalartikel, da keiner vorhanden 
 
-Neuronale Netzwerke sind ein beliebtes Hilfmittel im Bereich von NLP.
-Besonderst Modelle, welche sich mit dem Einsatz von Transformern ,
+Neuronale Netzwerke sind ein beliebtes Hilfsmittel im Bereich von NLP.
+Besonders Modelle, welche sich mit dem Einsatz von Transformern,
 wie BERT~\cite{devlin2018bert} oder GPT-2~\cite{radford2019language}, behelfen,
 gehören schon lange zum state-of-the-art. Doch diese Modelle mit ihrer
 Vielzahl an Layern, Neuronen und Verbindungen, gewähren einen nicht
 gerade einfachen Einblick in ihre Verarbeitungsschritte. Ansätze wie Leave-One-Out
 oder Leave-N-Out versuchen durch Neuklassifikation von modifizierten Texten einen
-allgemeinen Enblick in die Verarbeitungsstrukturen von Neuronalen Netzwerken zu geben.
+allgemeinen Einblick in die Verarbeitungsstrukturen von Neuronalen Netzwerken zu geben.
 Diese Ansätze betrachten aber nicht einen möglichen Kontext, wie er zwischen
 Wörtern in einem Satz existieren kann.
 \citeauthor{dunn2021context} haben daher in ihrem Artikel \citetitle{dunn2021context}
-eine Methode entwickelt um Wörter, mit ihrer unterschiedlichen Wichtigkeitsgewichtung
-innerhalb der Klassifizierung und unter Inbetrachtnahme von Kontext zu visualisieren.
-Als Replikationsziele wurden für diese Arbeit der gesamte Visualisierungsprozess
+eine Methode entwickelt, um Wörter mit ihrer unterschiedlichen Wichtigkeitsgewichtung
+innerhalb der Klassifizierung und unter Inbetrachtnahme von Kontexten zu visualisieren.
+Als Replikationsziel wurde für diese Arbeit der gesamte Visualisierungsprozess
 von \citeauthor{dunn2021context} gewählt. Zusätzlich dazu wurde ein eigenes
-BERT Modell auf dem gegebenen IMDB~\cite{maas-EtAl:2011:ACL-HLT2011} Datensatz trainiert um
-dieses für den späteren Klassifikationsprozess zu verwenden. Darüberhinaus
-wurden zwei zusätzliche Methodiken zur Visualisierung mit Kontext überprüft,
-welche in ihrere Effektivität jedoch hinter der von \citeauthor{dunn2021context}
+BERT Modell auf dem gegebenen IMDB~\cite{maas-EtAl:2011:ACL-HLT2011} Datensatz trainiert, um
+dieses für den späteren Klassifikationsprozess zu verwenden. Darüber hinaus
+wurden zwei zusätzliche Methodiken zur Visualisierung mit Kontexten überprüft,
+welche in ihrer Effektivität jedoch hinter der von \citeauthor{dunn2021context}
 stehen.
 Durch die Replikation wird eine verständliche Codebeigabe zum Originalartikel
 erzeugt, welche dem Leser ein noch besseres Verständnis liefern soll. So können
@@ -69,20 +69,20 @@ um so eine größere Vielfalt von Beispielen und ein besseres Verständnis berei
 
 Als Ziel dieser Replikation wurde die einzige Hypothese gewählt, welche
 \citeauthor{dunn2021context} in ihrem Artikel behandeln. Sie propagieren,
-dass sich die Wichtigkeit eines Wortes, innerhalb der Klassifikation durch ein
-Neuronales Netzwerk, nicht nur durch den Vergleich der sogenannten
-Prediction Strength (Sicherheit des NN, dass Label richtig Klassifiziert)
+dass sich die Wichtigkeit eines Wortes innerhalb der Klassifikation durch ein
+Neuronales Netzwerk anhand des durch den Vergleichs der sogenannten
+Prediction Strength (Sicherheit des NN, dass Label richtig klassifiziert ist)
 des Originaltextes zur Pediction Strength des Textes ohne das betrachtete Wort (Leave-One-Out)
-ergibt, sondern dass der Einbezug von kontextuell zusammhängenden Wörtern (Leave-N-Out)
-ebenfalls wichtig ist. \glqq Unser Ansatz schaut auf die Kombination von
-Wörtern und Sätzen um deren Einfluss auf die Ausgabe des Modells zu erkennen,
+ergibt. Ebenfalls ist der Einbezug von kontextuell zusammhängenden Wörtern (Leave-N-Out)
+für die Autoren wichtig. \glqq Unser Ansatz schaut auf die Kombination von
+Wörtern und Sätzen, um deren Einfluss auf die Ausgabe des Modells zu erkennen,
 was zu einer Visualisierung führt, welche kontextsensitiver zum Originaltext ist.
 \grqq~\cite{dunn2021context}\\
 
 Somit ist folgende Behauptung das Ziel dieser Replikation:
 
 \begin{itemize}
-    \item Leave-N-Out Ansatz ist geeigneter bei der Erkennung kontextueller Wörter und Strukturen als Leave-One-Out.
+    \item Der Leave-N-Out Ansatz ist geeigneter bei der Erkennung kontextueller Wörter und Strukturen als der des Leave-One-Out.
 \end{itemize}
 
 \section{Methoden}
@@ -92,14 +92,14 @@ fehlende Beigabe von Code mussten alle Ideen und Modelle von \citeauthor{dunn202
 eigenständig implementiert werden. Dazu wurde sich an Wortangaben
 der Autoren wie zum Beispiel:
 \glqq Der gesamte Code ist geschrieben in Python 3.8 und nutzt die Tensorflow Version
-der Transformersbilbiothek. [...] Texttokenisierung und Abhängigkeitsbestimmung wurden
+der Transformersbibliothek. [...] Texttokenisierung und Abhängigkeitsbestimmung wurden
 mit der spaCy NLP Bibliothek durchgeführt.\grqq~\cite{dunn2021context} gehalten.\\
 
 Zur Klassifizierung von Dokumenten wurde ein Modell unter der Verwendung von BERT trainiert.
-Da keine weitere Angaben zu finden waren und eine große Auswahl an unterschiedlichen
-BERT Modellen zu finden ist wurde das \textit{BERT uncased L-12 H-768 A-12} Modell gewählt,
-welches auf Tensorflow Hub\footnote{\url{https://tfhub.dev}} zu den am häufigsten verwendet
-BERT Modellen zählt. (über 214.000 Downloads)\\
+Da keine weiteren Angaben zu finden waren und eine große Auswahl an unterschiedlichen
+BERT Modellen zu finden ist wurde das \textit{BERT uncased L-12 H-768 A-12} Modell gewählt.
+Dieses zählt auf Tensorflow Hub\footnote{\url{https://tfhub.dev}} zu den am häufigsten verwendeten
+BERT Modellen (über 214.000 Downloads).\\
 
 Entwickelt wurde innerhalb eines Jupyter Notebooks mit Python.
 Die folgenden essentiellen Packages fanden dabei Anwendung:
@@ -122,7 +122,7 @@ Die folgenden essentiellen Packages fanden dabei Anwendung:
     \label{fig:packages}
 \end{figure}
 
-Das BERT Modell auf einer Nvidia Geforce RTX 3070 mit 8 GB Arbeitsspeicher
+Das BERT Modell wurde auf einer Nvidia Geforce RTX 3070 mit 8 GB Arbeitsspeicher
 trainiert.
 
 \subsection{Modellbeschreibung}
@@ -135,28 +135,28 @@ Dense-Layers verweist.\\
 Die beschriebene Methodik ist wie folgt:\\
 
 Ein Text wird durch das Modell klassifiziert und die damit korrespondierende
-Ausgabestärke, der Score, wird notiert. Nun werden mit Hilfe einer Abhängigkeitsbestimmung
+Ausgabestärke, der Score, notiert. Nun werden mit Hilfe einer Abhängigkeitsbestimmung
 alle Beziehungen zwischen Wörtern aufgedeckt. Anschließend werden neue Texte
 erzeugt, in denen jeweils ein Wortpaar, welches eine Verbindung zueinander
-aufweist, entfernt wurde. Die nun erhaltene Sammlung an neuen Texten wird wieder
-durch das Modell klassifiziert und die neuen Ausgabestärken werden mit der
-des Ausgangstextes verglichen. Texte mit größeren oder gleichen Ausgabestärken
+aufweist, entfernt wurde. Das Modell klassifiziert die nun
+erhaltene Sammlung an neuen Texten und vergleicht die neuen Ausgabestärken mit der des
+Ausgangstextes. Texte mit größeren oder gleichen Ausgabestärken
 als der des Originals tragen scheinbar nicht zur Klassifikation bei und werden
 entfernt. Dies geht mit unserer Intuition einher wie das folgende Beispiel erklärt.\\
 
-Nehmen wir an der Satz \textit{I love this film so much.} wurde durch das Modell mit
+Nehmen wir an, der Satz \textit{I love this film so much.} wurde durch das Modell mit
 einem Score von 0.9 bewertet. Das Neuronale Netzwerk ist sich somit sehr sicher,
-dass dieser Satz das Label 1, also positiv bekommen sollte. Nehmen wir nun an,
-dass wir den Text so modifizieren: \textit{I love film so much.} und dass das Modell
-nun einen Score von 0.95 vergibt. Durch das weglassen von \textit{this} ist die
-Sicherheit, dass es sich hier um ein positives Label handelt, gestiegen.
+dass dieser Satz das Label eins, also positiv, bekommen sollte. Würden wir den Text
+folgendermaßen modifizieren: \textit{I love film so much.} und das Modell
+nun einen Score von 0.95 vergeben, würde durch das Weglassen von \textit{this} die
+Sicherheit, dass es sich hier um ein positives Label handelt, steigen.
 Somit lässt sich annehmen, dass \textit{this} keinen Beitrag zur Klassifikation
-des Labels leistet. Somit können wir es von unseren Betrachtungen entfernen.\\
+des Labels leistet. Dementsprechend können wir es aus unseren Betrachtungen entfernen.\\
 
-Je größer nun eine Differenz ist, umso wichtiger war das
+Je größer nun eine Differenz ist, umso wichtiger ist das
 Wortpaar für die Klassifizierung. Mit Hilfe einer Linearisierung der Differenzen
 und einer Colormap können Wörter somit bezüglich ihrer Wichtigkeit
-farblich kenntlich gemacht werden. Je wichtiger umso grüner, je unwichiger, desto blauer.
+farblich kenntlich gemacht werden. Je wichtiger umso grüner, je unwichtiger, desto blauer.
 
 \subsection{Datenbeschreibung}
 
@@ -181,7 +181,7 @@ farblich kenntlich gemacht werden. Je wichtiger umso grüner, je unwichiger, des
             .4 ....
         }
     \end{minipage}
-    \caption{Ordnerstruktur des Datensatzes. x ist die Dokumentenid und y ist eine Sternewertung von Null bis Zehn.}
+    \caption{Ordnerstruktur des Datensatzes. x ist die Dokumenten-Id und y ist eine Sternewertung von Null bis Zehn.}
     \label{fig:filestruc}
 \end{figure}
 
@@ -190,12 +190,12 @@ Review Dataset~\cite{maas-EtAl:2011:ACL-HLT2011} der Universität Stanford.
 Dieser umfasst 50.000 Dokumente, darunter 25.000 Trainingsdokumente und 25.000 Testdokumente. Er ist unter
 \url{https://ai.stanford.edu/~amaas/data/sentiment/} verfügbar.\\
 
-Der Datensatz hat eine vorgegebene Ordnerstruktur, siehe Abbilung \ref{fig:filestruc}.
-So befinden sich die Trainingsdokumente und Testdokumente in eigenen Ordnern,
+Der Datensatz hat eine vorgegebene Ordnerstruktur, siehe Abbildung \ref{fig:filestruc}.
+So befinden sich die Trainings- und Testdokumente in eigenen Ordnern,
 wobei positive und negative Dokumente nochmals in eigene Ordner unterteilt sind.
-Die Dokumente unterscheiden sich stark in der Länge, so gibt es Dokumente mit knapp über 50 Zeichen
+Die Dokumente unterscheiden sich stark in der Länge. So gibt es Dokumente mit knapp über 50,
 aber auch solche mit über 13.000 Zeichen.
-Die Dokumente an sich sind nicht aufbereitet, enthalten englische Altagssprache und Sonderzeichen.
+Die Dokumente an sich sind nicht aufbereitet, enthalten englische Alltagssprache und Sonderzeichen.
 
 \begin{figure}[H]
     \centering
@@ -213,7 +213,7 @@ Die Dokumente an sich sind nicht aufbereitet, enthalten englische Altagssprache 
     \caption{Beispieltext eines positiven Trainingsdokuments}
 \end{figure}
 
-Bei der Verwendung der Daten zum Training des Modells, wurde der Trainingsdatensatz zusätzlich in einen
+Bei der Verwendung der Daten zum Training des Modells, wurde der Trainings- zusätzlich in einen
 Validierungsdatensatz aufgeteilt. Dieser umfasst 20 Prozent der Trainingsdaten und somit 5.000 Dokumente.
 
 \subsection{Hyperparameter}
@@ -234,7 +234,7 @@ Folgende Hyperparameter wurden gesetzt:
     \end{tabular}
 \end{figure}
 
-Die Batch Size definiert die Menge an Trainingsdaten, welche von Netzwerk aufeinmal
+Die Batch Size definiert die Menge an Trainingsdaten, welche vom Netzwerk auf einmal
 verarbeitet werden bevor es sich aktualisiert. Diese wurde auf 16 festgesetzt, da das
 Modell auf der zuvor schon erwähnten Nvidia Grafikkarte trainiert werden sollte.
 Größere Batch Sizes haben sich als Problem entpuppt, da diese nicht mehr in den
@@ -242,9 +242,9 @@ Speicher passten.
 Bei der Epochenanzahl wurde nur eine festgelegt.
 Beginnend lag dieser Wert bei fünf. Doch verschiedene Durchläufe und eine Einbindung
 von Early Stopping ergaben, dass das Modell nach der ersten Epoche die
-beste Leistung aufwies. Mit zunehmenden Training stieg auf dem Trainingsdatensatz
-die Accuracy und im selben Moment sank der Loss. Doch auf dem Validierungsdatensatz
-stieg der Loss bei gleichbleibener Accuracy in jeder Epoche. Dies war ein eindeutiges
+beste Leistung aufwies. Mit zunehmendem Training stieg auf dem Trainingsdatensatz
+die Accuracy und im selben Moment sank der Loss. Dahingegen stieg auf dem Validierungsdatensatz
+der Loss bei gleichbleibener Accuracy in jeder Epoche. Dies war ein eindeutiges
 Zeichen für Overfitting.
 
 \subsection{Implementierung}
@@ -253,37 +253,37 @@ Der Code zur Implementierung ist abrufbar unter: \url{https://github.com/maxhenz
 Die wichtigsten verwendeten Packages finden sich in Abbildung \ref{fig:packages}.\\
 
 Durch die Verwendung eines Jupyter Notebooks ist der Code interaktiv gehalten.
-Parameter können angepasst werden und dadurch erzeugte Modelle können sofort
+Parameter können angepasst und dadurch erzeugte Modelle sofort
 neu trainiert werden, falls die Hardware dies zulässt. Falls nicht
 sind im Projekt zwei fertige Modelle vorhanden, welche eigenständig trainiert wurden.\\
 
-Diese können im Notebook geladen und verwendet werden. Der entsprechende
-Flag muss gesetzt werden ob ein Modell trainiert oder geladen werden soll.
+Diese können im Notebook geladen und verwendet werden. Es muss durch einen
+entsprechenden Flag gesetzt werden, ob ein Modell trainiert oder geladen werden soll.
 Je nachdem werden ungebrauchte Codeteile übersprungen.\\
 
-Der Datensatz wird automatisch heruntergeladen und entpackt, je nachdem ob
+Der Datensatz wird automatisch heruntergeladen und entpackt, je nachdem, ob
 Daten schon vorhanden sind.\\
 
-Die Einteilung der Trainingsdaten in Training- und Validierungsmenge wird durch
-einen Seed bestimmt. Durch unterschiedliches setzen werden unterschiedliche
+Die Einteilung der Trainingsdaten in Trainings- und Validierungsmenge wird durch
+einen Seed bestimmt. Durch unterschiedliches Setzen werden verschiedene
 Daten zum Training bzw. zur Validierung benutzt. Hauptsächlich ist dieser
 Wert aber dazu da, damit kein Dokument in beiden Datensätzen auftaucht.\\
 
-Ein anderes BERT Modell kann ebenfalls geladen werden, dazu muss nur der passende
+Ein anderes BERT Modell kann ebenfalls geladen werden. Dazu muss nur der passende
 Link von Tensorflow Hub für die Variable \texttt{tfhub\_handle\_encoder} ersetzt
 werden.\\
 
-Bei dem zuvor schon erwähnte Optimierer handelt es sich um den AdamW~\cite{DBLP:journals/corr/abs-1711-05101}
+Bei dem zuvor schon erwähnten Optimierer handelt es sich um den AdamW~\cite{DBLP:journals/corr/abs-1711-05101}
 Optimierer, welcher die Parameter des Modells dynamisch während des Lernprozesses
 anpasst.\\
 
 \subsection{Aufbau der Experimente}
 
 Zur Durchführung der Experimente des Originalartikels wurden die Dokumente
-aus der Testdatemenge verwendet. Eine Zelle des Notebooks hat dabei die Aufgabe ein zufälliges
+aus der Testdatenmenge verwendet. Eine Zelle des Notebooks hat dabei die Aufgabe ein zufälliges
 Dokument zu wählen. Durch das Nacheinanderausführen der dahinter liegenden
-Zellen werden die Klassifikations und weiteren Rechenschritte zur Visualisierung
-automatisch abgearbeitet und man erhält am Ende ein fertiges Bild des
+Zellen werden die Klassifikations- und weiteren Rechenschritte zur Visualisierung
+automatisch abgearbeitet. Am Ende erhält man ein fertiges Bild des
 eingefärbten Textes. Dabei wird auf der einen Seite der Leave-One-Out und auf der
 anderen der Leave-N-Out Ansatz durchlaufen, so dass am Ende zwei Texte herauskommen,
 welche miteinander verglichen werden können.
@@ -302,7 +302,7 @@ welche miteinander verglichen werden können.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{img/test_time.png}
-    \caption{Testsergebnisse des Klassifikationsmodells mit BERT und angehängtem Dropout und Dense Layer.}
+    \caption{Testergebnisse des Klassifikationsmodells mit BERT und angehängtem Dropout und Dense Layer.}
     \label{fig:modell_test}
 \end{figure}
 
@@ -310,17 +310,17 @@ Die Replikation des Klassifikationsmodells ergab nach einer Trainingsepoche ein 
 einem Loss von $0.2882$. Es wird also ein Großteil der Daten richtig klassifiziert. Diese Ergebnisse konnten innerhalb
 der Testdaten bestätigt werden, siehe Abbildung \ref{fig:modell_train} und \ref{fig:modell_test}.
 
-Training mit größerer Epochenanzahl ergab keine Verbesserung der Acurracy, aber einer Steigerung des Losses. Dies
+Das Training mit größerer Epochenanzahl ergab keine Verbesserung der Acurracy, aber einer Steigerung des Losses. Dies
 deutet auf Overfitting hin.
 
 \subsection{Ergebnis 2}
 
 Die Ergebnisse des Originalartikels konnten durch die Replikation bestätigt werden. Leichte Abweichungen
-ergeben sich in der genauen Einfärbung der Wörter. Dies lässt sich auf ein unterschiedliches Klassifikationsmodell,
-welches leicht abweichende Werte produziert oder ein abweichendes Farbschema.
+ergaben sich in der genauen Einfärbung der Wörter. Dies lässt sich auf ein unterschiedliches Klassifikationsmodell,
+welches leicht abweichende Werte produziert oder ein abweichendes Farbschema zurückführen.
 Ebenso gibt es Beispiele des Originalartikels, welche falsch vom Modell klassifiziert werden.\\
 
-Die folgenden Beispiele sind die selben wie im Orginialartikel, welche
+Die folgenden Beispiele sind dieselben wie im Orginialartikel, welche
 jeweils mit dem Leave-One-Out und Leave-N-Out Ansatz visualisiert wurden.
 
 \begin{figure}[H]
@@ -330,7 +330,7 @@ jeweils mit dem Leave-One-Out und Leave-N-Out Ansatz visualisiert wurden.
     \includegraphics[]{img/first_ex_loo.png}\\
     Leave-N-Out\\
     \includegraphics[]{img/first_ex_lno.png}
-    \caption{Wie im Originalartikel wurde hier mit dem leave-n-out der Zusammenhang von \textit{best} und \textit{movies} besser gekennzeichnet. Im Gegensatz zum Originalartikel hingegen, wurde hier bei beiden das Wort \textit{created} als beeinflussend gekennzeichnet.}
+    \caption{Wie im Originalartikel wurde hier mit dem Leave-N-Out der Zusammenhang von \textit{best} und \textit{movies} besser gekennzeichnet. Im Gegensatz zum Originalartikel, wurde hier bei beiden das Wort \textit{created} als beeinflussend gekennzeichnet.}
     \label{fig:ex1}
 \end{figure}
 
@@ -341,7 +341,7 @@ jeweils mit dem Leave-One-Out und Leave-N-Out Ansatz visualisiert wurden.
     \includegraphics[]{img/sec_ex_loo.png}\\
     Leave-N-Out\\
     \includegraphics[]{img/sec_ex_lno.png}
-    \caption{In diesem Beispiel konnten die kontextuellen Zusammenhänge von \textit{boring} und \textit{film}, sowie \textit{bad} und \textit{acting} durch den leave-n-out Ansatz besser verdeutlicht werden.}
+    \caption{In diesem Beispiel konnten die kontextuellen Zusammenhänge von \textit{boring} und \textit{film}, sowie \textit{bad} und \textit{acting} durch den Leave-N-Out Ansatz besser verdeutlicht werden.}
     \label{fig:ex2}
 \end{figure}
 
@@ -368,9 +368,9 @@ jeweils mit dem Leave-One-Out und Leave-N-Out Ansatz visualisiert wurden.
 \end{figure}
 
 Wie in den Abbildungen \ref{fig:ex1} bis \ref{fig:ex3} zu sehen ist, sind die Ergebnisse nahezu äquivalent zu denen des
-Originalartikels. Bei denen wo das Klassifikationsmodell richtig liegt lässt sich auch die
-spätere Visualisierung des Originalartikels, in leicht abweichenden Farbnuancen, replizieren.
-Das Experiment wo das Modell schon im Vorhinein scheitert, siehe Abbildung \ref{fig:ex4}, ergibt auch eine stark abweichende Visualisierung.
+Originalartikels. Bei denen, wo das Klassifikationsmodell richtig liegt, lässt sich auch die
+spätere Visualisierung des Originalartikels in leicht abweichenden Farbnuancen replizieren.
+Das Experiment, in dem das Modell schon im Vorhinein scheitert, siehe Abbildung \ref{fig:ex4}, ergibt auch eine stark abweichende Visualisierung.
 
 \begin{figure}[H]
     \centering
@@ -379,12 +379,12 @@ Das Experiment wo das Modell schon im Vorhinein scheitert, siehe Abbildung \ref{
     \includegraphics[width=\linewidth]{img/new_ex1_loo.png}\\
     Leave-N-Out\\
     \includegraphics[width=\linewidth]{img/new_ex1_lno.png}
-    \caption{Verlgeich längerer Texte. Veränderte Einflüsse fallen hier nur in Nuancen auf.}
+    \caption{Vergleich längerer Texte. Veränderte Einflüsse fallen hier nur in Nuancen auf.}
     \label{fig:ex5}
 \end{figure}
 
-Bei längeren Texten fallen die veränderten Zusammenhänge nicht sofort auf. Ebenso fällt bei längeren Texten auf, dass
-oft nur einzelne Wörter vom Modell als wichtig interpretiert werden. Wodurch sich Visualisierungen wie in Abbildung \ref{fig:ex6} ergeben.
+Bei längeren Texten fallen die veränderten Zusammenhänge nicht sofort auf. Jedoch ist auffällig, dass bei längeren Texten
+oft nur einzelne Wörter vom Modell als wichtig interpretiert werden. Dadurch ergeben sich Visualisierungen wie in Abbildung \ref{fig:ex6}.
 
 \begin{figure}[H]
     \centering
@@ -397,18 +397,18 @@ oft nur einzelne Wörter vom Modell als wichtig interpretiert werden. Wodurch si
 
 \subsection{Zusätzliche Ergebnisse, die nicht im Originalartikel enthalten waren}
 
-Zusätzlich zu den im Experimenten des Originalartikels wurde zwei weitere Methodiken des Leave-N-Out Ansatzes implementiert.\\
+Zusätzlich zu den Experimenten des Originalartikels wurde zwei weitere Methodiken des Leave-N-Out Ansatzes implementiert.\\
 
 Ersteres versucht das Weglassen eines Elternwortes mit allen von ihm abhängigen Kindern. Dabei wird deutlich, dass
 hierbei zu viele Wörter entfernt werden, wodurch Abhängigkeiten schlechter dargestellt werden. Diese Methodik
 ähnelt in der Visualisierung stark der Leave-One-Out Methodik.\\
 
-Letzteres hingegen versucht zusätzlich zum Elternwort, alle Nachfahren dieses Wortes weggelassen. Somit werden auch
+Letzteres hingegen versucht, zusätzlich zum Elternwort alle Nachfahren dieses Wortes wegzulassen. Somit werden auch
 implizite Verbindungen von Wörtern in Betracht gezogen, welche nicht durch eine direkte Abhängigkeit miteinander
 verbunden sind. Diese Methodik erzeugt ähnliche Darstellungen wie die Leave-N-Out Methodik des
 Originalartikels, wobei direkte Abhängigkeiten etwas schwächer visualisiert werden. Indirekte werden
 hingegen hervorgehoben, wodurch größere Teilabschnitte bzgl. der Farbgebung zusammengefasst werden.
-Dies ist sichtbar in Abbildung \ref{fig:ex7}
+Dies ist sichtbar in Abbildung \ref{fig:ex7}.
 
 \begin{figure}[H]
     \centering
@@ -428,45 +428,45 @@ Dies ist sichtbar in Abbildung \ref{fig:ex7}
 
 \section{Diskussion}
 Der im Originalartikel propagierte Leave-N-Out Ansatz schafft es im Vergleich zum Leave-One-Out Ansatz, kontextuell abhängige
-Wörter bei der Visualisierung besser in Bezug zu setzen. Die Frage die sich stellt, ist jene, ob die dadurch in Bezug gesetzten Wörter einen besseren
+Wörter bei der Visualisierung besser in Bezug zu setzen. Die hier zu stellende Frage ist, ob die dadurch in Bezug gesetzten Wörter einen besseren
 Einblick in die Klassifikation eines Neuronalen Netzwerkes ermöglicht ? Natürlich ist es bei Sätzen wie \textit{One of the best movies ever created.} richtig,
 dass die Wörter \textit{best} und \textit{movie} durch ihren kontextuellen Zusammenhang eine gleichwertige Wichtigkeitsgewichtung erhalten sollten.
 Dennoch wird durch den Leave-One-Out Ansatz deutlich, dass das Neuronale Netzwerk das Wort \textit{best} stärker für die Klassifizierung benutzt
-als das Wort \text{movies}. Dies gibt eine stärkere Einsicht in die Wichtigkeit eines einzelnen Wortes, wohingegen beim Leave-N-Out Ansatz
-unklar ist ob durch das Weglassen beider Wörter die Klassifizierung schlechter geworden ist oder nur durch das Weglassen des stärker klassifizierten Wortes.\\
+als das Wort \textit{movies}. Dies gibt eine stärkere Einsicht in die Wichtigkeit eines einzelnen Wortes. Beim Leave-N-Out Ansatz hingegen
+ist unklar, ob durch das Weglassen beider Wörter  oder nur durch das Weglassen des stärker klassifizierten Wortes die Klassifizierung schlechter geworden ist.\\
 
 Der Originalartikel war trotz fehlenden Codes replizierbar. Die Aussagen der Autoren gaben einen guten Einblick in die verwendeten Strukturen und Techniken,
 welche mit Hilfe von state-of-the-art Modellen gut umgesetzt werden konnten. Dennoch sind leichte Abweichungen, durch fehlende Angaben zum
 BERT Modell, vorhanden. Ebenso ist eine abweichende Farbskala ein ebenso möglicher Grund für leicht verschiedene Darstellungen.\\
 
-Es wurde deutlich, dass der Originalansatz im Vergleich zu den selbst dargestellten Methodiken, eine bessere Visualisierung von kontextuell
+Es wurde deutlich, dass der Originalansatz im Vergleich zu den selbst dargestellten Methodiken eine bessere Visualisierung von kontextuell
 abhängigen Wörtern ermöglicht.
 
-\subsection{Was war einfach ?}
+\subsection{Was war einfach?}
 Aufgrund des recht einfachen, propagierten Ansatzes, waren nahezu alle Umsetzungen der Leave-N-Out Methodik nicht schwer zu implementieren.
-Durch klare Package Benennung und einer einfachen Algorithmusbeschreibung, konnten alle Schritte von der Klassifikation, dem produzieren neuer Text,
+Durch klare Package Benennung und einer einfachen Algorithmusbeschreibung konnten alle Schritte von der Klassifikation, dem Produzieren neuer Texte,
 der Filterung der Neuklassifikation und der Visualisierung problemlos repliziert werden. So benötigte das Einlesen in die API des jeweiligen
 Packages eine gewisse Zeit, dennoch handelte es sich dabei nie um zu umfängliche Beschreibungen.\\
 
-Das angegebene spacy Package ist ein sehr gutes Tool für die Erstellung von Abhängigkeitsgraphen auf denen sich recht
-einfach navigieren lässt, wodurch die Abhängigkeitsbestimmung dadurch auch nicht besonderst schwer viel. Und die Bearbeitung
-auf den neu generierten Texten viel ebenfalls, durch das sehr umfängliche pandas Package, sehr leicht aus.
+Das angegebene spacy Package ist ein sehr gutes Tool für die Erstellung von Abhängigkeitsgraphen, auf denen sich recht
+einfach navigieren lässt, wodurch die Abhängigkeitsbestimmung dadurch auch nicht besonders schwer viel. Und die Bearbeitung
+auf den neu generierten Texten fiel ebenfalls, durch das sehr umfängliche pandas Package, sehr leicht aus.
 
-\subsection{Was war schwer ?}
-Die Implementierung des Klassifikationsmodells, sowie der allgemeine Umgang mit diesem, war nicht sehr einfach.
+\subsection{Was war schwer?}
+Die Implementierung des Klassifikationsmodells sowie der allgemeine Umgang mit diesem war nicht sehr einfach.
 Durch fehlende Angaben der Autoren zum Modell war beginnend eine gewisse Recherche notwendig, welches BERT Modell nun genau
 benutzt werden soll. Es wurde zwar grob eine Implementierung der verschiedenen Layer erwähnt, diese war aber nicht ausreichend
 für die eigenständige Erstellung. Angaben der Daten waren ebenfalls recht sporadisch, wodurch erst eine geeignete Implementationsstruktur
-erdacht werden musste. Auch die Tatsache, dass keine Angaben zu Hyperparametern gemacht wurden, trug erschwerend bei. Das finden der richtigen
+erdacht werden musste. Auch die Tatsache, dass keine Angaben zu Hyperparametern gemacht wurden, trug erschwerend bei. Das Finden der richtigen
 Batch Size und das Einstellen des Trainings auf der Grafikkarte erwies sich als äußert umständlich, da zu große Batch Sizes für einen
 \texttt{Out Of Memory} Error sorgten und das Training auf einer CPU (8 Kerne) dennoch zu langsam war.
 
 \subsection{Empfehlungen für die Replizierbarkeit}
 Natürlich wäre ein, von vornherein beigereichter, Code sehr praktisch gewesen. Wobei sich auch hier sagen lässt, dass das Verstehen von
-fremden Code eine Problematik in sich ist. Genauere Angaben zur Implementierung würden hier schon reichen. Eine genaue Angabe des verwendeten
-BERT Modells sowie eine Bereichung der verwendeten Hyperparameter und einer Hardwarebeschreibung würde viel Testen obsolet machen.
+fremdem Code eine Problematik in sich ist. Genauere Angaben zur Implementierung würden hier schon reichen. Eine genaue Angabe des verwendeten
+BERT Modells sowie eine Bereicherung der verwendeten Hyperparameter und einer Hardwarebeschreibung würde viel Testen obsolet machen.
 Zusätzlich dazu, auch wenn nicht unbedingt von Nöten, wäre eine Angabe von verwendeten Funktionen der Packages, welche zur Realisierung
-des Algorithmus verwenden wurden, sehr bequem.
+des Algorithmus verwendet wurden, sehr bequem.
 
 \section{Kommunikation mit den Autoren}
 
@@ -474,6 +474,32 @@ des Algorithmus verwenden wurden, sehr bequem.
 
 \subsection{Notebook Code}
 
-\includepdf[pages=-]{pdf/project.pdf}
+\includepdf[pages=-, pagecommand={\thispagestyle{empty}}]{pdf/project.pdf}
+
+\subsection{Git-Historie}
+\begin{figure}[H]
+    \tiny
+    \begin{lstlisting}
+        * 65ddb6a (HEAD -> master, origin/master) (added minor changes to article, 2022-03-14)
+        * 5997180 (Exported project to html and pdf, 2022-03-14)
+        * 787d109 (added all sections up to communication with autors, 2022-03-11)
+        * c9035db (Added additional Experiments, 2022-03-09)
+        * 01fe9ee (changed structure, capsuled certain calls in functions, 2022-03-09)
+        * 0763df8 (added further text in example section, 2022-03-07)
+        * e13b3cc (Corrected calculations for negative labels, 2022-03-07)
+        * 1743a87 (added examples and wrote text furhter, 2022-03-04)
+        * f358118 (overhauled paper texts up to hyperparameter, 2022-03-04)
+        * 8623038 (added leave n out experiment, 2022-03-04)
+        * 49ad312 (changed notebook (cont), 2022-03-02)
+        * b0e9404 (added new (better) model , startet writing report, changed notebook structure, 2022-03-02)
+        * 614af17 (updated gitignore, 2022-03-02)
+        * 70efdb4 (added report framework, 2022-03-02)
+        * ad222c3 (Better visualization, custom cmap, 2022-02-24)
+        * f49b4c9 (Added text visualization, 2022-02-24)
+        * cdc060f (Commit with trained Model, dependency parsing and leave n out, 2022-02-23)
+        * 959dcb1 (Add lfs support, 2022-02-23)                
+    \end{lstlisting}
+\end{figure}
+\printbibliography
 
 \end{document}

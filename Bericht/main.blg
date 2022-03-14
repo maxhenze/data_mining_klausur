@@ -1,17 +1,17 @@
 [0] Config.pm:311> INFO - This is Biber 2.16
 [0] Config.pm:314> INFO - Logfile is 'main.blg'
 [121] biber-MSWIN32:340> INFO - === 
-[163] Biber.pm:415> INFO - Reading 'main.bcf'
-[291] Biber.pm:952> INFO - Found 5 citekeys in bib section 0
-[309] Biber.pm:4340> INFO - Processing section 0
-[322] Biber.pm:4531> INFO - Looking for bibtex format file 'bib.bib' for section 0
-[366] bibtex.pm:1689> INFO - LaTeX decoding ...
-[381] bibtex.pm:1494> INFO - Found BibTeX data source 'bib.bib'
-[449] Utils.pm:395> WARN - legacy month field 'June' in entry 'maas-EtAl:2011:ACL-HLT2011' is not an integer - this will probably not sort properly.
-[467] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
-[468] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[468] Biber.pm:4168> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'de-DE'
-[468] Biber.pm:4174> INFO - No sort tailoring available for locale 'de-DE'
-[477] bbl.pm:654> INFO - Writing 'main.bbl' with encoding 'UTF-8'
-[482] bbl.pm:757> INFO - Output to main.bbl
-[482] Biber.pm:128> INFO - WARNINGS: 1
+[158] Biber.pm:415> INFO - Reading 'main.bcf'
+[289] Biber.pm:952> INFO - Found 5 citekeys in bib section 0
+[306] Biber.pm:4340> INFO - Processing section 0
+[320] Biber.pm:4531> INFO - Looking for bibtex format file 'bib.bib' for section 0
+[360] bibtex.pm:1689> INFO - LaTeX decoding ...
+[376] bibtex.pm:1494> INFO - Found BibTeX data source 'bib.bib'
+[429] Utils.pm:395> WARN - legacy month field 'June' in entry 'maas-EtAl:2011:ACL-HLT2011' is not an integer - this will probably not sort properly.
+[449] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[449] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
+[449] Biber.pm:4168> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'de-DE'
+[449] Biber.pm:4174> INFO - No sort tailoring available for locale 'de-DE'
+[458] bbl.pm:654> INFO - Writing 'main.bbl' with encoding 'UTF-8'
+[463] bbl.pm:757> INFO - Output to main.bbl
+[463] Biber.pm:128> INFO - WARNINGS: 1
